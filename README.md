@@ -1,2 +1,2 @@
-# oracle-ai-dp-portfolio
-AI DP Portifolio
+# Oracle AI DP Portfolio
+End-to-end AI Data Platform demo.

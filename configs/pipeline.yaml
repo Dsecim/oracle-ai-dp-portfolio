@@ -1,0 +1,45 @@
+pipeline_name: ai-dp-churn
+
+description: >
+  End-to-end AI Data Platform pipeline for customer churn prediction
+  using mock data, Spark processing and ML training.
+
+stages:
+
+  - name: generate_mock_data
+    type: python
+    script: data-generator/generate_mock_data.py
+    params:
+      rows: 5000
+      output: data-generator/output/clientes.csv
+
+  - name: spark_etl
+    type: spark
+    script: spark-jobs/churn_etl.py
+    params:
+      input_path: data-generator/output/clientes.csv
+      output_path: lake/clientes_churn_parquet
+
+  - name: load_dw
+    type: sql
+    script: sql/create_tables.sql
+    target: autonomous_database
+
+  - name: train_model
+    type: python
+    script: ml/train.py
+    params:
+      input: data-generator/output/clientes.csv
+      model_output: ml/model.pkl
+
+  - name: predict
+    type: python
+    script: ml/predict.py
+    params:
+      model: ml/model.pkl
+      input: data-generator/output/clientes.csv
+
+outputs:
+  - lake: lake/clientes_churn_parquet
+  - table: CLIENTES_CHURN
+  - model: ml/model.pkl

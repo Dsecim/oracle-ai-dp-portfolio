@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net" modified="2026-02-04T00:00:00.000Z" agent="GPT" version="24.7.10" type="device">
+  <diagram id="ai-dp-arch" name="Architecture">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="t1" value="Oracle AI DP Portfolio — Churn Prediction (Mock Data + Spark + DW + ML)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="30" width="1200" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Boxes -->
+        <mxCell id="b1" value="Data Generator&#10;(Python)&#10;generate_mock_data.py" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="90" y="140" width="260" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="b2" value="OCI Object Storage (Raw)&#10;clientes.csv" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="420" y="140" width="260" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="b3" value="OCI Data Flow (Spark ETL)&#10;churn_etl.py" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="750" y="140" width="260" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="b4" value="OCI Object Storage (Processed)&#10;Parquet / curated" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="140" width="260" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="b5" value="Autonomous Data Warehouse (ADW)&#10;CLIENTES_CHURN" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="420" y="340" width="260" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="b6" value="OCI Data Science&#10;Train + Evaluate&#10;train.py" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="750" y="340" width="260" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="b7" value="Model Artifact&#10;model.pkl" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="340" width="260" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="b8" value="Predictions / Scoring&#10;predict.py" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="750" y="540" width="260" height="110" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="b9" value="BI / Consumption&#10;(OAC / Dashboards / API)" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="540" width="260" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrows -->
+        <mxCell id="e1" style="endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="b1" target="b2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" style="endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="b2" target="b3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" style="endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="b3" target="b4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" style="endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="b3" target="b5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" style="endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="b5" target="b6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" style="endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="b6" target="b7">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e7" style="endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="b7" target="b8">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e8" style="endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="b8" target="b9">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Notes -->
+        <mxCell id="n1" value="Config via env.example / pipeline.yaml&#10;CI: ruff + black + pytest&#10;Release: artifacts.zip" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=1;fillColor=#ffffff;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="540" width="520" height="110" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,29 @@
+name: Release Artifacts
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build-artifacts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install zip
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip
+
+      - name: Package project artifacts
+        run: |
+          bash scripts/package_artifacts.sh
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: oracle-ai-dp-artifacts
+          path: artifacts.zip
